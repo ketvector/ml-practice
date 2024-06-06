@@ -3,7 +3,11 @@ import utils
 import matplotlib.pyplot as plt
 
 """
-Binary classification using only python and numpy
+Binary classification using Logistic Regression
+
+Using only python and numpy. 
+
+Uses the sonar dataset (https://www.kaggle.com/datasets/rupakroy/sonarcsv)
 
 """
 
@@ -48,8 +52,6 @@ for iter in range(num_iter+1):
         accuracy_arr[int(iter/check_step)] = accuracy
 
     weight_update = utils.get_weight_updates(output_matrix, input_matrix, activations, basic)
-
-    #print(weight_update)
 
     weights = np.add(weight_update * alpha, weights)
 

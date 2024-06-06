@@ -5,6 +5,14 @@ from sklearn import linear_model
 from sklearn import model_selection
 from sklearn import metrics
 
+"""
+
+Simple linear regression using scikit learn.
+
+Data from here - (https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
+
+"""
+
 def basic(file, OneHotEncoder = None, StandardScaler = None):
 
     file_df = pandas.read_csv(file)
@@ -36,10 +44,7 @@ def basic(file, OneHotEncoder = None, StandardScaler = None):
         numerical_features = StandardScaler.transform(numerical_features)    
     numerical_features = pandas.DataFrame(numerical_features)
 
-    #print(categorical_features.isnull().sum())
     categorical_features = categorical_features.fillna("DummyValue")
-    #print(categorical_features.isnull().sum())
-    #print(categorical_features.shape)
 
     if OneHotEncoder == None:
         OneHotEncoder = preprocessing.OneHotEncoder(sparse_output=False, handle_unknown='ignore')       
@@ -56,8 +61,6 @@ def basic(file, OneHotEncoder = None, StandardScaler = None):
 def train():
 
     all_features, y, OneHotEncoder , StandardScaler = basic('train.csv')
-
-    # X_train, X_test, y_train, y_test = model_selection.train_test_split(all_features, y, test_size=0.2)
 
     LinearRegression = linear_model.LinearRegression()
     LinearRegression.fit(all_features, y)

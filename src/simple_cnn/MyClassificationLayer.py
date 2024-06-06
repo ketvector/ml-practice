@@ -13,6 +13,5 @@ class MyClassificationLayer(tf.Module):
           denoms = tf.reduce_sum(exp_s, axis=1, keepdims = True)
           probs = exp_s / denoms
           max_index = tf.argmax(probs, axis=1)
-          #print("probs ", probs)
           return (max_index, probs)
 

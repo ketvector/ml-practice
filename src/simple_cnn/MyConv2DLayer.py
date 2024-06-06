@@ -13,7 +13,6 @@ class MyConv2DLayer(tf.Module):
         num_kernels = self.kernels.shape[0]
         conv_result = tf.Variable(tf.zeros(shape=(x.shape[0], num_kernels, conv_rows, conv_cols ), dtype=tf.float64))
         for item, index in zip(x, range(x.shape[0])):
-            #print("index " , index)
             conv_result_item = tf.Variable(tf.zeros(shape=(num_kernels,conv_rows, conv_cols), dtype=tf.float64))
             for k in range(num_kernels):
                 for r in range(conv_rows):
@@ -21,7 +20,6 @@ class MyConv2DLayer(tf.Module):
                         temp = utils.local_conv(item,  self.kernels[k], r, c)
                         conv_result_temp = tf.scatter_nd(tf.constant([[k, r, c]]), updates=tf.expand_dims(temp,axis=0) , shape=tf.constant([num_kernels,conv_rows, conv_cols]))
                         conv_result_item = conv_result_item + conv_result_temp
-            #print(conv_result_item[0])
             update = tf.scatter_nd(tf.constant([[index]]), updates=tf.expand_dims(conv_result_item, axis=0), shape=tf.constant([x.shape[0],num_kernels,conv_rows, conv_cols]))
             conv_result = conv_result + update
         return conv_result

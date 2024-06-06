@@ -44,8 +44,6 @@ def get_data(limit = None):
     
     return (train_x, train_y, test_x, test_y)
 
-# image = Image.frombytes(mode="L", size=images[1].shape, data=images[2])
-# image.save('abc.png')
         
 
         
