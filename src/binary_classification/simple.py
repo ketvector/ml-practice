@@ -2,6 +2,10 @@ import numpy as np
 import utils
 import matplotlib.pyplot as plt
 
+"""
+Binary classification using only python and numpy
+
+"""
 
 raw_matrix = np.loadtxt('sonar.txt', delimiter=",", dtype="str")
 num_rows = raw_matrix.shape[0]
