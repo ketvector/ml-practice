@@ -13,16 +13,12 @@ df["score"] = df["score"] - 1
 # Get information about the dataframe
 df_info = df.info()
 # Print the information
-print(df_info)
+print("dataframe info", df_info)
 
-# Split the dataframe into training and validation sets
-train_df, val_df = train_test_split(df, test_size=0.2, random_state=42)
 
 # Print the shape of the training set
-print("Training set shape:", train_df.shape)
+print("Training set shape:", df.shape)
 
-# Print the shape of the validation set
-print("Validation set shape:", val_df.shape)
 
 classifier = keras_nlp.models.BertClassifier.from_preset(
     "bert_tiny_en_uncased",
@@ -32,11 +28,10 @@ classifier = keras_nlp.models.BertClassifier.from_preset(
 
 model = classifier
 
-print(model.summary())
+print("model summary: ", model.summary())
 
 
-# Take only the first 10 rows of train_df
-train_df_subset = train_df.head(40)
+train_df_subset = df
 
 # Extract the "full_text" values as X
 X = train_df_subset["full_text"].values
@@ -45,11 +40,7 @@ X = train_df_subset["full_text"].values
 y = train_df_subset["score"].values
 
 # Fit the classifier on the training data
-model.fit(X, y, batch_size=20)
-
-
-print(model.predict(X))
-
+model.fit(X, y, batch_size=50, epochs=2, validation_split=0.1)
 
 
 
