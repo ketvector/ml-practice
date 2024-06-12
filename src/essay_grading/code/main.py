@@ -12,7 +12,7 @@ def main():
     debug_("is executing eagerly ?", tf.executing_eagerly())
     debug_("keras version", keras.__version__)
     preprocessor, model = get_model()
-    model.compile(optimizer=keras.optimizers.Adam(5e-6), loss = loss_fn, metrics=[QuadraticWeightedKappaMetric(6)], run_eagerly=True)
+    model.compile(optimizer=keras.optimizers.Adam(0.001), loss = loss_fn, metrics=[QuadraticWeightedKappaMetric(6)], run_eagerly=True)
     model.summary()
     def preprocess_fn(text, label=None):
         text = preprocessor(text)  # Preprocess text
@@ -39,5 +39,11 @@ def main():
     sub_df.to_csv(f"{SAVE_PATH}/submission.csv", index=False)
 
 main()
+
+"""
+
+Research model size and memory requirements
+
+"""
 
 

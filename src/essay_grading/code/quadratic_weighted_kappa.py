@@ -29,8 +29,8 @@ class QuadraticWeightedKappaMetric(keras.metrics.Metric):
     
     def result(self):
         E = keras.ops.outer(self.actual_counts, self.predicted_counts)
-        # debug_("self.actual_counts", self.actual_counts.numpy())
-        # debug_("self.predicted_counts", self.predicted_counts.numpy())
+        debug_("self.actual_counts", self.actual_counts.numpy())
+        debug_("self.predicted_counts", self.predicted_counts.numpy())
         # debug_("E" , E)
         # debug_("O", self.O.numpy())
         normal_E = E / keras.ops.sum(E)
