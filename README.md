@@ -6,4 +6,3 @@ Some ML / AI models - sometimes written from scratch without using libraries, so
 
 3. A simple CNN created in [simple_cnn](src/simple_cnn), using raw tensorflow (no keras)
 
-4. Essay grading using keras nlp at [essay_grading](src/essay_grading/)
